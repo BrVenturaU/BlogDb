@@ -22,3 +22,26 @@ CREATE TABLE Usuario(
 	tipo CHAR(2) NOT NULL
 );
 GO
+
+--BRANDON MANUEL VENTURA UMAÑA - SMIS010919
+--Inserts tabla Usuario
+INSERT INTO Usuario VALUES
+	('Brandon', 'Manuel', 'Ventura', 'Umaña', 'brandonventura16@gmail.com',
+	'brandon2020', 'holaMundo1234', '16-09-2020', 'AD');
+GO
+INSERT INTO Usuario VALUES
+	('Wendy', 'Azucena', 'Solórzano', 'Hernández', 'hwendy750@gmail.com',
+	'wendy2020', 'holaMundo1234', '16-09-2020', 'AD');
+GO
+INSERT INTO Usuario VALUES
+	('Cristian', 'Alexander', 'Serrano', 'Blanco', 'asbcrit@gmail.com',
+	'cristian2020', 'holaMundo1234', '16-09-2020', 'AD');
+GO
+INSERT INTO Usuario VALUES
+	('Isis', 'Fénix', 'Benitez', 'Ventura', 'isisfenix@gmail.com',
+	'fenix2020', 'holaMundo1234', '16-09-2020', 'CM');
+GO
+INSERT INTO Usuario VALUES
+	('Rosa', 'Maria', 'Velazquez', 'Romero', 'rosa20@gmail.com',
+	'maria2020', 'holaMundo1234', '16-09-2020', 'CM');
+GO
