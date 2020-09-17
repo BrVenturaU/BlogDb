@@ -45,3 +45,13 @@ INSERT INTO Usuario VALUES
 	('Rosa', 'Maria', 'Velazquez', 'Romero', 'rosa20@gmail.com',
 	'maria2020', 'holaMundo1234', '16-09-2020', 'CM');
 GO
+
+--BRANDON MANUEL VENTURA UMAÑA - SMIS010919
+--Creando tabla TipoValoracion
+CREATE TABLE TipoValoracion(
+	id INT IDENTITY PRIMARY KEY NOT NULL,
+	nombre NVARCHAR(150) NOT NULL, 
+	descripcion NVARCHAR(200),
+	estado BIT
+);
+GO
