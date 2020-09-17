@@ -141,3 +141,41 @@ CREATE TABLE Pregunta
 	etiqueta NVARCHAR(MAX)
 );
 GO
+
+--Cristian Alexander Serrano Blanco
+
+--Creacion de la tabla CategoriaPublicacion
+CREATE TABLE CategoriaPublicacion(
+	id SMALLINT IDENTITY PRIMARY KEY NOT NULL,
+	nombre NVARCHAR(30) NOT NULL,
+	descripcion NVARCHAR(MAX),
+	estado BIT NOT NULL,
+	imagen NVARCHAR(MAX)
+);
+GO
+
+--Creacion de la tabla CategoriaPregunta
+CREATE TABLE CategoriaPregunta(
+	id TINYINT IDENTITY PRIMARY KEY NOT NULL,
+	nombre NVARCHAR(50) NOT NULL,
+	descripcion NVARCHAR(MAX),
+	estado BIT NOT NULL
+);
+GO
+
+
+--Creacion de la tabla Publicacion
+
+CREATE TABLE Publicacion(
+	id INT IDENTITY PRIMARY KEY NOT NULL,
+	idCategoria INT NOT NULL,
+	idUsuario INT NOT NULL,
+	titulo NVARCHAR(150) NOT NULL,
+	cabecera NVARCHAR(MAX) NOT NULL,
+	cuerpo NVARCHAR(MAX) NOT NULL,
+	fechaCreacion DATETIME CHECK(fechaCreacion <= GETDATE()),
+	fechaModificacion DATETIME CHECK(fechaModificacion <= GETDATE()),
+	estado BIT NOT NULL,
+	imagen NVARCHAR(MAX),
+);
+GO
