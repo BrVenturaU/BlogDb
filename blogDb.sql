@@ -78,3 +78,15 @@ INSERT INTO TipoValoracion VALUES
 	('Otro',
 	 'La información del FAQ le dió otras ideas al usuario', 1);
 GO
+
+--BRANDON MANUEL VENTURA UMAÑA - SMIS010919
+--Creando tabla ValoracionPregunta
+CREATE TABLE ValoracionPregunta(
+	idUsuario INT NOT NULL,
+	idPregunta INT NOT NULL,
+	idTipoValoracion INT FOREIGN KEY REFERENCES TipoValoracion(id),
+	esUtil BIT,
+	comentario NVARCHAR(280),
+	fechaCreacion DATETIME CHECK(fechaCreacion <= GETDATE())
+);
+GO
