@@ -55,3 +55,26 @@ CREATE TABLE TipoValoracion(
 	estado BIT
 );
 GO
+
+--BRANDON MANUEL VENTURA UMAÑA - SMIS010919
+--Inserts tabla TipoValoracion
+INSERT INTO TipoValoracion VALUES
+	('La solución fue de ayuda', 'La información del FAQ solucionó la duda del usuario',
+	 1);
+GO
+INSERT INTO TipoValoracion VALUES
+	('La información es confusa', 'La información del FAQ resultó confusa para el usuario',
+	1);
+GO
+INSERT INTO TipoValoracion VALUES
+	('La solución no funciona', 'La información del FAQ no funcionó para el usuario',
+	1);
+GO
+INSERT INTO TipoValoracion VALUES
+	('No me gusta el producto ni la política',
+	 'La información del FAQ no concuerda con los gustos del usuario', 1);
+GO
+INSERT INTO TipoValoracion VALUES
+	('Otro',
+	 'La información del FAQ le dió otras ideas al usuario', 1);
+GO
