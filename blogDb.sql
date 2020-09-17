@@ -92,6 +92,16 @@ CREATE TABLE ValoracionPregunta(
 );
 GO
 
+--BRANDON MANUEL VENTURA UMAÑA - SMIS010919
+--Agregando llaves fóraneas a ValoracionPregunta
+ALTER TABLE ValoracionPregunta
+	ADD FOREIGN KEY (idPregunta) REFERENCES Pregunta(id);
+GO
+
+ALTER TABLE ValoracionPregunta
+	ADD FOREIGN KEY (idUsuario) REFERENCES Usuario(id);
+GO
+
 --Wendy Azucena Solorzano Hernandez ***SMIS010519
 
 --Creacion de tablas:
