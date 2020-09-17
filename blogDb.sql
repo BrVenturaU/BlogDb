@@ -91,3 +91,42 @@ CREATE TABLE ValoracionPregunta(
 	PRIMARY KEY (idUsuario, idPregunta)
 );
 GO
+
+
+--Wendy Azucena Solorzano Hernandez ***SMIS010519
+
+--Creacion de tablas:
+
+--Tabla - Comentario
+CREATE TABLE Comentario
+(
+	id INT IDENTITY NOT NULL PRIMARY KEY, 
+	idUsuario INT NOT NULL, 
+	idPublicacion INT NOT NULL,
+	comentario NVARCHAR(MAX),
+	estado BIT NOT NULL,
+	fechaCreacion DATETIME CHECK (fechaCreacion <= GETDATE()),
+);
+GO
+
+--Tabla - Valoracion de Comentario
+CREATE TABLE ValoracionComentario
+(
+	idComentario INT NOT NULL,
+	idUsuario INT NOT NULL, 
+	esUtil BIT,
+	fechaCreacion DATETIME CHECK (fechaCreacion <= GETDATE())
+);
+GO
+
+--TABLA - Pregunta
+CREATE TABLE Pregunta
+(
+	id INT IDENTITY NOT NULL PRIMARY KEY,
+	idCategoria TINYINT NOT NULL, 
+	titulo NVARCHAR(200),
+	descripcion NVARCHAR(MAX),
+	estado BIT NOT NULL,
+	etiqueta NVARCHAR(MAX)
+);
+GO
