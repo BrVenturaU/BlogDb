@@ -1,0 +1,3 @@
+CREATE DATABASE BlogDb;
+USE BlogDb;
+GO
