@@ -49,7 +49,7 @@ GO
 --BRANDON MANUEL VENTURA UMAÑA - SMIS010919
 --Creando tabla TipoValoracion
 CREATE TABLE TipoValoracion(
-	id INT IDENTITY PRIMARY KEY NOT NULL,
+	id TINYINT IDENTITY PRIMARY KEY NOT NULL,
 	nombre NVARCHAR(150) NOT NULL, 
 	descripcion NVARCHAR(200),
 	estado BIT
@@ -84,14 +84,13 @@ GO
 CREATE TABLE ValoracionPregunta(
 	idUsuario INT NOT NULL,
 	idPregunta INT NOT NULL,
-	idTipoValoracion INT FOREIGN KEY REFERENCES TipoValoracion(id),
+	idTipoValoracion TINYINT FOREIGN KEY REFERENCES TipoValoracion(id),
 	esUtil BIT,
 	comentario NVARCHAR(280),
 	fechaCreacion DATETIME CHECK(fechaCreacion <= GETDATE()),
 	PRIMARY KEY (idUsuario, idPregunta)
 );
 GO
-
 
 --Wendy Azucena Solorzano Hernandez ***SMIS010519
 
@@ -115,9 +114,11 @@ CREATE TABLE ValoracionComentario
 	idComentario INT NOT NULL,
 	idUsuario INT NOT NULL, 
 	esUtil BIT,
-	fechaCreacion DATETIME CHECK (fechaCreacion <= GETDATE())
+	fechaCreacion DATETIME CHECK (fechaCreacion <= GETDATE()),
+	PRIMARY KEY(idUsuario, idComentario)
 );
 GO
+
 
 --TABLA - Pregunta
 CREATE TABLE Pregunta
