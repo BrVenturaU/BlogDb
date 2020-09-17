@@ -87,6 +87,7 @@ CREATE TABLE ValoracionPregunta(
 	idTipoValoracion INT FOREIGN KEY REFERENCES TipoValoracion(id),
 	esUtil BIT,
 	comentario NVARCHAR(280),
-	fechaCreacion DATETIME CHECK(fechaCreacion <= GETDATE())
+	fechaCreacion DATETIME CHECK(fechaCreacion <= GETDATE()),
+	PRIMARY KEY (idUsuario, idPregunta)
 );
 GO
