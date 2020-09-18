@@ -79,6 +79,37 @@ INSERT INTO TipoValoracion VALUES
 	 'La información del FAQ le dió otras ideas al usuario', 1);
 GO
 
+--Cristian Alexander Serrano Blanco
+--Creacion de la tabla CategoriaPregunta
+CREATE TABLE CategoriaPregunta(
+	id TINYINT IDENTITY PRIMARY KEY NOT NULL,
+	nombre NVARCHAR(50) NOT NULL,
+	descripcion NVARCHAR(MAX),
+	estado BIT NOT NULL
+);
+GO
+
+INSERT INTO CategoriaPregunta VALUES
+	('¿Como Iniciar Sesion?', 'Obtén información sobre cómo iniciar sesión en tu cuenta',1);
+GO
+
+INSERT INTO CategoriaPregunta VALUES
+	('¿como registrarse?', 'Obtén información sobre cómo registrar tu cuenta',1);
+GO
+
+INSERT INTO CategoriaPregunta VALUES
+	('¿como puedo comentar en un blog?', 'Obtén información sobre cómo comentar un blog',1);
+GO
+
+INSERT INTO CategoriaPregunta VALUES
+	('¿Como cerrar mi cuenta definitivamente?', 'Obtén información sobre cómo comentar un blog',1);
+GO
+
+INSERT INTO CategoriaPregunta VALUES
+	('¿Como valorar un comentario?', 'Obtén información sobre cómo comentar un blog',1);
+GO
+
+
 --Wendy Azucena Solorzano Hernandez - SMIS010519
 
 --TABLA - Pregunta
@@ -156,7 +187,7 @@ INSERT INTO ValoracionPregunta VALUES
 GO
 
 INSERT INTO ValoracionPregunta VALUES
-	(2, 3, 2, 1, 'Me ha sido dificil entender', '16-09-2020');
+	(2, 4, 2, 1, 'Me ha sido dificil entender', '16-09-2020');
 GO
 
 
@@ -175,52 +206,23 @@ CREATE TABLE CategoriaPublicacion(
 GO
 
 INSERT INTO CategoriaPublicacion VALUES
-	('Pelicula', 'Estrenos, chismes o rememorar peliculas',1);
+	('Pelicula', 'Estrenos, chismes o rememorar peliculas',1, '');
 GO
 
 INSERT INTO CategoriaPublicacion VALUES
-	('Comedia', 'Memes o chistes de stand up o cualquier tipo',1 );
+	('Comedia', 'Memes o chistes de stand up o cualquier tipo',1, '');
 GO
 
  INSERT INTO CategoriaPublicacion VALUES
-	('Noticias', 'Engloba toda clase de noticias de economia,deporte,enfermedades y acontecimientos naturales',1);
+	('Noticias', 'Engloba toda clase de noticias de economia,deporte,enfermedades y acontecimientos naturales',1, '');
 GO
 
 INSERT INTO CategoriaPublicacion VALUES
-	('Noticias', 'Engloba toda clase de noticias de economia,deporte,enfermedades y acontecimientos naturales',1 );
+	('Noticias', 'Engloba toda clase de noticias de economia,deporte,enfermedades y acontecimientos naturales',1, '');
 GO
 
 INSERT INTO CategoriaPublicacion VALUES
-	('Videojuegos', 'Actualizaciones y DLC de nuevos o viejos videojuegos',1 );
-GO
-
---Creacion de la tabla CategoriaPregunta
-CREATE TABLE CategoriaPregunta(
-	id TINYINT IDENTITY PRIMARY KEY NOT NULL,
-	nombre NVARCHAR(50) NOT NULL,
-	descripcion NVARCHAR(MAX),
-	estado BIT NOT NULL
-);
-GO
-
-INSERT INTO CategoriaPregunta VALUES
-	('¿Como Iniciar Sesion?', 'Obtén información sobre cómo iniciar sesión en tu cuenta',1);
-GO
-
-INSERT INTO CategoriaPregunta VALUES
-	('¿como registrarse?', 'Obtén información sobre cómo registrar tu cuenta',1);
-GO
-
-INSERT INTO CategoriaPregunta VALUES
-	('¿como puedo comentar en un blog?', 'Obtén información sobre cómo comentar un blog',1);
-GO
-
-INSERT INTO CategoriaPregunta VALUES
-	('¿Como cerrar mi cuenta definitivamente?', 'Obtén información sobre cómo comentar un blog',1);
-GO
-
-INSERT INTO CategoriaPregunta VALUES
-	('¿Como valorar un comentario?', 'Obtén información sobre cómo comentar un blog',1);
+	('Videojuegos', 'Actualizaciones y DLC de nuevos o viejos videojuegos',1, '');
 GO
 
 --Creacion de la tabla Publicacion
@@ -256,17 +258,17 @@ INSERT INTO Publicacion VALUES
 	(1,1,'VALORANT EL NUEVO JUEGO COMPETITIVO', 'Encuentra todo lo que debes saber de la nueva sensación
 	en los eSport','Aqui tuviera que ir toda la publicidad y informacion de el juego pero como
 	no quise buscarlo en la pagina mejor preferi escribir lo primero que se viniera a la cabeza gracias por 
-	aver leido hasta aquí, fue una bonita forma de perder tu tiempo. :) ', '16-09-2020', '16-09-2020',1);
+	aver leido hasta aquí, fue una bonita forma de perder tu tiempo. :) ', '16-09-2020', '16-09-2020',1, '');
 GO
 
 INSERT INTO Publicacion VALUES
 	(1,1,'SE DESCUBRE FORMA MILAGROSA DE NO CONTRAR EL COVID DESCUBRELO AQUI...', 'Investigadores de Donald Trump aseguran la constante injesta de...','
-	Este espacio es solo para decirte que es totalmente para que te distraigas y que leas esto aunque no quieras', '16-09-2020', '16-09-2020',1);
+	Este espacio es solo para decirte que es totalmente para que te distraigas y que leas esto aunque no quieras', '16-09-2020', '16-09-2020',1, '');
 GO
 
 INSERT INTO Publicacion VALUES
 	(1,1,'ESTRENO, ESTRENO LA NUEVA PELICULA QUE REVOLUCIONARÁ EL 2020', 'la pelicula tiene por titulo the sad little bee','
-	Tu tandras el deber de descubrir porque esta triste solo en cines el 24 de septiembre', '16-09-2020', '16-09-2020',1);
+	Tu tandras el deber de descubrir porque esta triste solo en cines el 24 de septiembre', '16-09-2020', '16-09-2020',1, '');
 GO
 
 --**********************************************************************************************************************
@@ -308,7 +310,7 @@ INSERT INTO Comentario VALUES
 	(4, 1, 'Donde estan sus redes sociales...', 1, '06-11-2019');
 
 INSERT INTO Comentario VALUES
-	(5, 2, 'La mejor informacion que encontre, Gracias!', 1, '07-11-1019');
+	(5, 2, 'La mejor informacion que encontre, Gracias!', 1, '07-11-2019');
 GO
 
 --Tabla - Valoracion de Comentario
@@ -344,7 +346,7 @@ INSERT INTO ValoracionComentario VALUES
 	(5, 3, 1, '06-11-2019');
 
 INSERT INTO ValoracionComentario VALUES
-	(3, 2, 1, '07-11-1019');
+	(3, 2, 1, '07-11-2019');
 GO
 
 
