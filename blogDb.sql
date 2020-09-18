@@ -93,6 +93,28 @@ CREATE TABLE ValoracionPregunta(
 GO
 
 --BRANDON MANUEL VENTURA UMAÑA - SMIS010919
+--Inserts tabla ValoracionPregunta
+INSERT INTO ValoracionPregunta VALUES
+	(1, 1, 1, 1, '', '16-09-2020');
+GO
+
+INSERT INTO ValoracionPregunta VALUES
+	(2, 2, 1, 1, 'Ha sido de mucha utilidad', '16-09-2020');
+GO
+
+INSERT INTO ValoracionPregunta VALUES
+	(2, 3, 1, 1, 'Ha resuelto mi problema', '16-09-2020');
+GO
+
+INSERT INTO ValoracionPregunta VALUES
+	(4, 2, 2, 1, 'Ha ayudado pero cuesta entender', '16-09-2020');
+GO
+
+INSERT INTO ValoracionPregunta VALUES
+	(2, 3, 2, 1, 'Me ha sido dificil entender', '16-09-2020');
+GO
+
+--BRANDON MANUEL VENTURA UMAÑA - SMIS010919
 --Agregando llaves fóraneas a ValoracionPregunta
 ALTER TABLE ValoracionPregunta
 	ADD FOREIGN KEY (idPregunta) REFERENCES Pregunta(id);
