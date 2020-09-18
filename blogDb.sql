@@ -79,6 +79,41 @@ INSERT INTO TipoValoracion VALUES
 	 'La información del FAQ le dió otras ideas al usuario', 1);
 GO
 
+--Wendy Azucena Solorzano Hernandez - SMIS010519
+
+--TABLA - Pregunta
+CREATE TABLE Pregunta
+(
+	id INT IDENTITY NOT NULL PRIMARY KEY,
+	idCategoria TINYINT NOT NULL, 
+	titulo NVARCHAR(200),
+	descripcion NVARCHAR(MAX),
+	estado BIT NOT NULL,
+	etiqueta NVARCHAR(MAX)
+);
+GO
+
+--Agregando claves externas a la tabla Pregunta
+ALTER TABLE Pregunta
+	ADD FOREIGN KEY (idCategoria) REFERENCES CategoriaPregunta(id);
+
+--Insertando datos en tabla Pregunta
+INSERT INTO Pregunta VALUES
+	(1, 'Las TIC', '¿Donde puedo aprender mas de ello?', 1, 'Tecnologia ')
+
+INSERT INTO Pregunta VALUES
+	(2, 'Las TIC', '¿Quien invento el termino TIC?', 1, 'Tecnologia ')
+
+INSERT INTO Pregunta VALUES
+	(3, 'Sobre Matrices', '¿En que se usan las matrices?', 1, 'Matematica')
+
+INSERT INTO Pregunta VALUES
+	(5, 'Metodos en C#', '¿Que significa GET y SET en C#?', 1, 'Programacion')
+
+INSERT INTO Pregunta VALUES
+	(4, 'Formularios', '¿Porque se borra todo el contenido del formario?', 1, 'Programacion')
+GO
+
 --BRANDON MANUEL VENTURA UMAÑA - SMIS010919
 --Creando tabla ValoracionPregunta
 CREATE TABLE ValoracionPregunta(
@@ -90,6 +125,16 @@ CREATE TABLE ValoracionPregunta(
 	fechaCreacion DATETIME CHECK(fechaCreacion <= GETDATE()),
 	PRIMARY KEY (idUsuario, idPregunta)
 );
+GO
+
+--BRANDON MANUEL VENTURA UMAÑA - SMIS010919
+--Agregando llaves fóraneas a ValoracionPregunta
+ALTER TABLE ValoracionPregunta
+	ADD FOREIGN KEY (idPregunta) REFERENCES Pregunta(id);
+GO
+
+ALTER TABLE ValoracionPregunta
+	ADD FOREIGN KEY (idUsuario) REFERENCES Usuario(id);
 GO
 
 --BRANDON MANUEL VENTURA UMAÑA - SMIS010919
@@ -114,14 +159,114 @@ INSERT INTO ValoracionPregunta VALUES
 	(2, 3, 2, 1, 'Me ha sido dificil entender', '16-09-2020');
 GO
 
---BRANDON MANUEL VENTURA UMAÑA - SMIS010919
---Agregando llaves fóraneas a ValoracionPregunta
-ALTER TABLE ValoracionPregunta
-	ADD FOREIGN KEY (idPregunta) REFERENCES Pregunta(id);
+
+
+
+--Cristian Alexander Serrano Blanco
+
+--Creacion de la tabla CategoriaPublicacion
+CREATE TABLE CategoriaPublicacion(
+	id SMALLINT IDENTITY PRIMARY KEY NOT NULL,
+	nombre NVARCHAR(30) NOT NULL,
+	descripcion NVARCHAR(MAX),
+	estado BIT NOT NULL,
+	imagen NVARCHAR(MAX)
+);
 GO
 
-ALTER TABLE ValoracionPregunta
+INSERT INTO CategoriaPublicacion VALUES
+	('Pelicula', 'Estrenos, chismes o rememorar peliculas',1);
+GO
+
+INSERT INTO CategoriaPublicacion VALUES
+	('Comedia', 'Memes o chistes de stand up o cualquier tipo',1 );
+GO
+
+ INSERT INTO CategoriaPublicacion VALUES
+	('Noticias', 'Engloba toda clase de noticias de economia,deporte,enfermedades y acontecimientos naturales',1);
+GO
+
+INSERT INTO CategoriaPublicacion VALUES
+	('Noticias', 'Engloba toda clase de noticias de economia,deporte,enfermedades y acontecimientos naturales',1 );
+GO
+
+INSERT INTO CategoriaPublicacion VALUES
+	('Videojuegos', 'Actualizaciones y DLC de nuevos o viejos videojuegos',1 );
+GO
+
+--Creacion de la tabla CategoriaPregunta
+CREATE TABLE CategoriaPregunta(
+	id TINYINT IDENTITY PRIMARY KEY NOT NULL,
+	nombre NVARCHAR(50) NOT NULL,
+	descripcion NVARCHAR(MAX),
+	estado BIT NOT NULL
+);
+GO
+
+INSERT INTO CategoriaPregunta VALUES
+	('¿Como Iniciar Sesion?', 'Obtén información sobre cómo iniciar sesión en tu cuenta',1);
+GO
+
+INSERT INTO CategoriaPregunta VALUES
+	('¿como registrarse?', 'Obtén información sobre cómo registrar tu cuenta',1);
+GO
+
+INSERT INTO CategoriaPregunta VALUES
+	('¿como puedo comentar en un blog?', 'Obtén información sobre cómo comentar un blog',1);
+GO
+
+INSERT INTO CategoriaPregunta VALUES
+	('¿Como cerrar mi cuenta definitivamente?', 'Obtén información sobre cómo comentar un blog',1);
+GO
+
+INSERT INTO CategoriaPregunta VALUES
+	('¿Como valorar un comentario?', 'Obtén información sobre cómo comentar un blog',1);
+GO
+
+--Creacion de la tabla Publicacion
+
+CREATE TABLE Publicacion(
+	id INT IDENTITY PRIMARY KEY NOT NULL,
+	idCategoria SMALLINT NOT NULL,
+	idUsuario INT NOT NULL,
+	titulo NVARCHAR(150) NOT NULL,
+	cabecera NVARCHAR(MAX) NOT NULL,
+	cuerpo NVARCHAR(MAX) NOT NULL,
+	fechaCreacion DATETIME CHECK(fechaCreacion <= GETDATE()),
+	fechaModificacion DATETIME CHECK(fechaModificacion <= GETDATE()),
+	estado BIT NOT NULL,
+	imagen NVARCHAR(MAX),
+);
+GO
+
+--Cristian Alexander Serrano Blanco
+--Agregando llaves fóraneas a Publicacion
+
+ALTER TABLE Publicacion
 	ADD FOREIGN KEY (idUsuario) REFERENCES Usuario(id);
+GO
+
+ALTER TABLE Publicacion
+	ADD FOREIGN KEY (idCategoria) REFERENCES CategoriaPublicacion(id);
+GO
+
+
+--Insertar datos en la tabla Publicacion
+INSERT INTO Publicacion VALUES
+	(1,1,'VALORANT EL NUEVO JUEGO COMPETITIVO', 'Encuentra todo lo que debes saber de la nueva sensación
+	en los eSport','Aqui tuviera que ir toda la publicidad y informacion de el juego pero como
+	no quise buscarlo en la pagina mejor preferi escribir lo primero que se viniera a la cabeza gracias por 
+	aver leido hasta aquí, fue una bonita forma de perder tu tiempo. :) ', '16-09-2020', '16-09-2020',1);
+GO
+
+INSERT INTO Publicacion VALUES
+	(1,1,'SE DESCUBRE FORMA MILAGROSA DE NO CONTRAR EL COVID DESCUBRELO AQUI...', 'Investigadores de Donald Trump aseguran la constante injesta de...','
+	Este espacio es solo para decirte que es totalmente para que te distraigas y que leas esto aunque no quieras', '16-09-2020', '16-09-2020',1);
+GO
+
+INSERT INTO Publicacion VALUES
+	(1,1,'ESTRENO, ESTRENO LA NUEVA PELICULA QUE REVOLUCIONARÁ EL 2020', 'la pelicula tiene por titulo the sad little bee','
+	Tu tandras el deber de descubrir porque esta triste solo en cines el 24 de septiembre', '16-09-2020', '16-09-2020',1);
 GO
 
 --**********************************************************************************************************************
@@ -203,145 +348,4 @@ INSERT INTO ValoracionComentario VALUES
 GO
 
 
---Wendy Azucena Solorzano Hernandez - SMIS010519
 
---TABLA - Pregunta
-CREATE TABLE Pregunta
-(
-	id INT IDENTITY NOT NULL PRIMARY KEY,
-	idCategoria TINYINT NOT NULL, 
-	titulo NVARCHAR(200),
-	descripcion NVARCHAR(MAX),
-	estado BIT NOT NULL,
-	etiqueta NVARCHAR(MAX)
-);
-GO
-
---Agregando claves externas a la tabla Pregunta
-ALTER TABLE Pregunta
-	ADD FOREIGN KEY (idCategoria) REFERENCES CategoriaPregunta(id);
-
---Insertando datos en tabla Pregunta
-INSERT INTO Pregunta VALUES
-	(1, 'Las TIC', '¿Donde puedo aprender mas de ello?', 1, 'Tecnologia ')
-
-INSERT INTO Pregunta VALUES
-	(2, 'Las TIC', '¿Quien invento el termino TIC?', 1, 'Tecnologia ')
-
-INSERT INTO Pregunta VALUES
-	(3, 'Sobre Matrices', '¿En que se usan las matrices?', 1, 'Matematica')
-
-INSERT INTO Pregunta VALUES
-	(5, 'Metodos en C#', '¿Que significa GET y SET en C#?', 1, 'Programacion')
-
-INSERT INTO Pregunta VALUES
-	(4, 'Formularios', '¿Porque se borra todo el contenido del formario?', 1, 'Programacion')
-GO
-
---Cristian Alexander Serrano Blanco
-
---Creacion de la tabla CategoriaPublicacion
-CREATE TABLE CategoriaPublicacion(
-	id SMALLINT IDENTITY PRIMARY KEY NOT NULL,
-	nombre NVARCHAR(30) NOT NULL,
-	descripcion NVARCHAR(MAX),
-	estado BIT NOT NULL,
-	imagen NVARCHAR(MAX)
-);
-GO
-
-INSERT INTO CategoriaPublicacion VALUES
-	('Pelicula', 'Estrenos, chismes o rememorar peliculas',1);
-GO
-
-INSERT INTO CategoriaPublicacion VALUES
-	('Comedia', 'Memes o chistes de stand up o cualquier tipo',1 );
-GO
-
- INSERT INTO CategoriaPublicacion VALUES
-	('Noticias', 'Engloba toda clase de noticias de economia,deporte,enfermedades y acontecimientos naturales',1);
-GO
-
-INSERT INTO CategoriaPublicacion VALUES
-	('Noticias', 'Engloba toda clase de noticias de economia,deporte,enfermedades y acontecimientos naturales',1 );
-GO
-
-INSERT INTO CategoriaPublicacion VALUES
-	('Videojuegos', 'Actualizaciones y DLC de nuevos o viejos videojuegos',1 );
-GO
-
---Creacion de la tabla CategoriaPregunta
-CREATE TABLE CategoriaPregunta(
-	id TINYINT IDENTITY PRIMARY KEY NOT NULL,
-	nombre NVARCHAR(50) NOT NULL,
-	descripcion NVARCHAR(MAX),
-	estado BIT NOT NULL
-);
-GO
-
-INSERT INTO CategoriaPregunta VALUES
-	('¿Como Iniciar Sesion?', 'Obtén información sobre cómo iniciar sesión en tu cuenta',1);
-GO
-
-INSERT INTO CategoriaPregunta VALUES
-	('¿como registrarse?', 'Obtén información sobre cómo registrar tu cuenta',1);
-GO
-
-INSERT INTO CategoriaPregunta VALUES
-	('¿como puedo comentar en un blog?', 'Obtén información sobre cómo comentar un blog',1);
-GO
-
-INSERT INTO CategoriaPregunta VALUES
-	('¿Como cerrar mi cuenta definitivamente?', 'Obtén información sobre cómo comentar un blog',1);
-GO
-
-INSERT INTO CategoriaPregunta VALUES
-	('¿Como valorar un comentario?', 'Obtén información sobre cómo comentar un blog',1);
-GO
-
-
---Creacion de la tabla Publicacion
-
-CREATE TABLE Publicacion(
-	id INT IDENTITY PRIMARY KEY NOT NULL,
-	idCategoria SMALLINT NOT NULL,
-	idUsuario INT NOT NULL,
-	titulo NVARCHAR(150) NOT NULL,
-	cabecera NVARCHAR(MAX) NOT NULL,
-	cuerpo NVARCHAR(MAX) NOT NULL,
-	fechaCreacion DATETIME CHECK(fechaCreacion <= GETDATE()),
-	fechaModificacion DATETIME CHECK(fechaModificacion <= GETDATE()),
-	estado BIT NOT NULL,
-	imagen NVARCHAR(MAX),
-);
-GO
-
---Cristian Alexander Serrano Blanco
---Agregando llaves fóraneas a Publicacion
-
-ALTER TABLE Publicacion
-	ADD FOREIGN KEY (idUsuario) REFERENCES Usuario(id);
-GO
-
-ALTER TABLE Publicacion
-	ADD FOREIGN KEY (idCategoria) REFERENCES CategoriaPublicacion(id);
-GO
-
-
---Insertar datos en la tabla Publicacion
-INSERT INTO Publicacion VALUES
-	(1,1,'VALORANT EL NUEVO JUEGO COMPETITIVO', 'Encuentra todo lo que debes saber de la nueva sensación
-	en los eSport','Aqui tuviera que ir toda la publicidad y informacion de el juego pero como
-	no quise buscarlo en la pagina mejor preferi escribir lo primero que se viniera a la cabeza gracias por 
-	aver leido hasta aquí, fue una bonita forma de perder tu tiempo. :) ', '16-09-2020', '16-09-2020',1);
-GO
-
-INSERT INTO Publicacion VALUES
-	(1,1,'SE DESCUBRE FORMA MILAGROSA DE NO CONTRAR EL COVID DESCUBRELO AQUI...', 'Investigadores de Donald Trump aseguran la constante injesta de...','
-	Este espacio es solo para decirte que es totalmente para que te distraigas y que leas esto aunque no quieras', '16-09-2020', '16-09-2020',1);
-GO
-
-INSERT INTO Publicacion VALUES
-	(1,1,'ESTRENO, ESTRENO LA NUEVA PELICULA QUE REVOLUCIONARÁ EL 2020', 'la pelicula tiene por titulo the sad little bee','
-	Tu tandras el deber de descubrir porque esta triste solo en cines el 24 de septiembre', '16-09-2020', '16-09-2020',1);
-GO
